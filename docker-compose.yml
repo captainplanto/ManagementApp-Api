@@ -1,6 +1,6 @@
 version: "3.9"
 services:
-  app:
+  app: 
     build:
       context: .
       args:
@@ -9,4 +9,21 @@ services:
       - "8000:8000"
     volumes:
       - ./app:/app
-    command: sh -c "python manage.py runserver 0.0.0.0:8000"
+    depends_on:
+      - mongodb
+    command: sh -c "python manage.py wait_for_db &&
+                    python manage.py migrate && 
+                    python manage.py runserver 0.0.0.0:8000"
+  mongodb:
+    image: mongo
+    environment:
+      MONGO_INITDB_ROOT_USERNAME: DB_USER
+      MONGO_INITDB_ROOT_PASSWORD: DB_PASS
+      MONGO_INITDB_DATABASE: DB_NAME
+      MONGO_URI: mongodb+srv://myusername:mypassword@mydatabasecluster.mongodb.net/mydatabase?retryWrites=true&w=majority
+    ports:
+      - "27017:27017"
+  
+
+
+ 
