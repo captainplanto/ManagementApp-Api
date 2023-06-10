@@ -17,6 +17,7 @@ class CommandTest(SimpleTestCase):
 
 
 """
+
 # Test if database database is not ready to connect
 @patch("time.sleep")
     def test_wait_db_delay(self, patched_sleep, patched_check):

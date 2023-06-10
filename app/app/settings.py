@@ -77,16 +77,18 @@ WSGI_APPLICATION = 'app.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'djongo',
-         # 'NAME': os.environ.get('DB_NAME'),
-        'NAME': 'DB_NAME',
-        'HOST': os.environ.get('DB_HOST'),
-        'PORT': os.environ.get('DB_PORT'),
-        'USER': os.environ.get('DB_USER'),
+        'NAME': os.environ.get("DB_NAME"),
+        'ENFORCE_SCHEMA': True,
+        'CLIENT': {
+            'host': os.environ.get("MONGODB_URI")
+        },
+        'port': 27017,
+        'USERNAME': os.environ.get('DB_USER'),
         'PASSWORD': os.environ.get('DB_PASS'),
+
+
     }
 }
-
-
 # Password validation
 # https://docs.djangoproject.com/en/3.2/ref/settings/#auth-password-validators
 
