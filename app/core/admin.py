@@ -1,7 +1,9 @@
+# Django admin customization, Needed to register the models you want to have control on in the Admin Panel
+
+
+
 from core import models
 from django.contrib import admin
-
-# Django admin customization
 from django.contrib.auth.admin import UserAdmin as BaseUserAdmin
 from django.utils.translation import gettext_lazy as _
 
@@ -21,7 +23,7 @@ class UserAdmin(BaseUserAdmin):
     add_fieldsets = ((None, {'classes': ('wide',),
                              'fields': (
         'email',
-        'password1',
+        'password1', 
         'password2',
         'name',
         'is_active',

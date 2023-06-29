@@ -39,6 +39,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'core',
     'rest_framework',
+    'rest_framework.authtoken',
     'drf_spectacular',
     'user',
 ]
@@ -81,7 +82,7 @@ DATABASES = {
     'default': {
         'ENGINE': 'djongo',
         'NAME': os.environ.get("DB_NAME"),
-        'ENFORCE_SCHEMA': True,
+        'ENFORCE_SCHEMA': False,
         'CLIENT': {
             'host': os.environ.get("MONGODB_URI")
         },
